@@ -4,6 +4,7 @@
 
 1. Login to you CentOS 7 VM and [Install docker](https://github.com/submah/docker-tutorials/edit/master/install_docker_centos7.md).
 
+
 2. Create the SSL Certificate
 
 TLS/SSL works by using a combination of a public certificate (.crt) and a private key (.key). The SSL key is kept secret on the server. It is used to encrypt content sent to clients. The SSL certificate is publicly shared with anyone requesting the content. It can be used to decrypt the content signed by the associated SSL key. You should already have the directories **/etc/ssl/certs** and **/etc/ssl/private** to hold the certificates. If not, you have to create them and be able to write to them.
@@ -130,5 +131,33 @@ Navigate to the repository administration page and create a new repository by se
 
 Now Click on Create Repository
 
+8. Login to Nexus Docker Repository
 
+File: /etc/docker/daemon.json
 
+```
+{
+  "insecure-registries" : ["private-registry.c4clouds.com:4000"]
+}
+```
+# Restart Docker
+systemctl restart docker
+
+# Login 
+docker login -u=admin -p=admin123 https://private-registry.c4clouds.com:4000
+
+<img src="../images/nexus-docker-login.png">
+
+9. Pushing images to Repository
+    # Pull alpine image
+    * docker pull alpine
+
+    # Tag the alpine image 
+    * docker tag 6dbb9cc54074 private-repository.c4clouds.com:4000/alpine:v1
+
+    # Push the image to Nexus Docker repositoy 
+    * docker push private-registry.c4clouds.com:4000/alpine:v1
+
+<img src="../images/nexus-docker-push.png">
+
+<img src="../images/nexus-docker-push-nexus.png">
