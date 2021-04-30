@@ -140,22 +140,22 @@ File: /etc/docker/daemon.json
   "insecure-registries" : ["private-registry.c4clouds.com:4000"]
 }
 ```
-# Restart Docker
+### Restart Docker
 systemctl restart docker
 
-# Login 
+### Login 
 docker login -u=admin -p=admin123 https://private-registry.c4clouds.com:4000
 
 <img src="../images/nexus-docker-login.png">
 
 9. Pushing images to Repository
-    # Pull alpine image
+    ### Pull alpine image
     * docker pull alpine
 
-    # Tag the alpine image 
+    ### Tag the alpine image 
     * docker tag 6dbb9cc54074 private-repository.c4clouds.com:4000/alpine:v1
 
-    # Push the image to Nexus Docker repositoy 
+    ### Push the image to Nexus Docker repositoy 
     * docker push private-registry.c4clouds.com:4000/alpine:v1
 
 <img src="../images/nexus-docker-push.png">
