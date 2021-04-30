@@ -2,4 +2,4 @@
 
 ### Index
   1. [Setting up a Trusted Docker Registry in Nexus]()
-  2. [Nexus_Repository_Integrated_with_Maven]()
+  2. [Nexus Repository Integrated with Maven]()
