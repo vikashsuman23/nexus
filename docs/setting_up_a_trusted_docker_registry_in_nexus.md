@@ -110,3 +110,14 @@ user  nginx;
 ```
 docker run --name nginx-proxy -v /root/nginx.conf:/etc/nginx/nginx.conf:ro -v /etc/ssl/private/nginx-signed.key:/etc/nginx/ssl.key:ro -v /etc/ssl/certs/nginx-signed.crt:/etc/nginx/ssl.crt:ro -p 443:443 -p 80:80  -d nginx
 ```
+
+7. Create the Docker Registry
+
+Login to the Nexus WEB-UI **https://private-registry.c4clouds.com** or **https://Host_VM_IP**
+
+Navigate to the repository administration page and create a new repository by selecting the **docker(hosted) recipe**
+
+<img src="../images/create_repo.png">
+
+<img src="../images/create_repo1.png">
+
