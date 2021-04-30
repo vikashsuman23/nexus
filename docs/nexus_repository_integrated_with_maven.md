@@ -175,3 +175,17 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
 </settings>
 
 ```
+
+9.	To **Build** execute the below command
+
+    * mvn clean package
+
+<img src="../images/mvn-build.png">
+
+10.	To **Deploy** the package to Nexus created repository, execute the below command
+
+    * mvn deploy
+
+<img src="../images/mvn-deploy.png"> 
+
+<img src="../images/mvn-deploy1.png">
