@@ -188,4 +188,4 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
 
 <img src="../images/mvn-deploy.png"> 
 
-<img src="../images/mvn-deploy2.png">
+<img src="../images/mvn-deploy2.PNG">
