@@ -37,7 +37,7 @@ docker run -d -p 8081:8081 -p 4000:4000 --name nexus -v local-nexus-data:/nexus-
 
 File: nginx.conf
 
-```s
+```java
 user  nginx;
   worker_processes  1;
 
@@ -84,7 +84,7 @@ user  nginx;
         ssl_certificate_key  /etc/nginx/nginx-signed.key;
 
         location / {
-            proxy_pass http://nexus:8082/;
+            proxy_pass http://nexus:8081/;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
