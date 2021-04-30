@@ -37,7 +37,7 @@ docker run -d -p 8081:8081 -p 4000:4000 --name nexus -v local-nexus-data:/nexus-
 
 File: nginx.conf
 
-```conf
+```s
 user  nginx;
   worker_processes  1;
 
