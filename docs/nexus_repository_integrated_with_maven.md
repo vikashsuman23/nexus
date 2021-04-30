@@ -4,7 +4,7 @@
 1. Login to your Linux VM and [Install docker](https://github.com/submah/docker-tutorials/blob/master/docker-installation.md)
 2. We are going to launch nexus through docker image. Execute the below commands to access nexus UI
 
-```vim
+```sh
 # Create a docker volume
 
 docker volume create local-nexus-data
