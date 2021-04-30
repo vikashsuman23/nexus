@@ -41,7 +41,8 @@ docker run -d -p 8081:8081 --name nexus -v local-nexus-data:/nexus-data sonatype
 
 Note: Delete the existing pom.xml file and create a new pom.xml file with below contents
 
-<table><tr><td><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<table><tr><td>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <modelVersion>4.0.0</modelVersion>
         <groupId>com.efsavage</groupId>
@@ -63,9 +64,6 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
         <name>maven-demo</name>
         <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-demo/</url>
       </repository>
-
-
-
 
   </distributionManagement>
 
@@ -97,7 +95,6 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
                         </plugin>
                 </plugins>
         </build>
-
 </project>
 </tr></td></table>
 
