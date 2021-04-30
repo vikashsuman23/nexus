@@ -108,7 +108,10 @@ user  nginx;
 6. Build and run the Nginx container
 
 ```
-docker run --name nginx-proxy -v /root/nginx.conf:/etc/nginx/nginx.conf:ro -v /etc/ssl/private/nginx-signed.key:/etc/nginx/ssl.key:ro -v /etc/ssl/certs/nginx-signed.crt:/etc/nginx/ssl.crt:ro -p 443:443 -p 80:80  -d nginx
+docker run --name nginx-proxy \
+-v /root/nginx.conf:/etc/nginx/nginx.conf:ro \
+-v /etc/ssl/private/nginx-signed.key:/etc/nginx/ssl.key:ro \
+-v /etc/ssl/certs/nginx-signed.crt:/etc/nginx/ssl.crt:ro -p 443:443 -p 80:80  -d nginx
 ```
 
 7. Create the Docker Registry
@@ -120,4 +123,8 @@ Navigate to the repository administration page and create a new repository by se
 <img src="../images/create_repo.png">
 
 <img src="../images/create_repo1.png">
+
+<img src="../images/create_docker_repo.png">
+
+<img src="../images/create_docker_repo1.png">
 
