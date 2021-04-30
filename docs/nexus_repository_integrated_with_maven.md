@@ -35,4 +35,70 @@ docker run -d -p 8081:8081 --name nexus -v local-nexus-data:/nexus-data sonatype
 
 <img src="../images/create_repo4.png">
 
+6.	Clone the sample java project
+
+    * git clone https://github.com/submah/maven-helloworld.git
+
+Note: Delete the existing pom.xml file and create a new pom.xml file with below contents
+
+<table><tr><td><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.efsavage</groupId>
+        <artifactId>hello-world-war</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+        <packaging>war</packaging>
+        <name>Hello World Web Application Repository</name>
+        <description>Simplest possible Java Webapp</description>
+
+    <distributionManagement>
+     <snapshotRepository>
+      <id>maven-demo-snapshots</id>
+      <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-demo-snapshots/</url>
+    </snapshotRepository>
+
+
+      <repository>
+        <id>maven-demo</id>
+        <name>maven-demo</name>
+        <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-demo/</url>
+      </repository>
+
+
+
+
+  </distributionManagement>
+
+        <build>
+                <plugins>
+
+
+                        <plugin>
+                                <groupId>org.mortbay.jetty</groupId>
+                                <artifactId>jetty-maven-plugin</artifactId>
+                                <version>8.1.5.v20120716</version>
+                                <configuration>
+                                        <scanIntervalSeconds>0</scanIntervalSeconds>
+                                </configuration>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-war-plugin</artifactId>
+                                <version>2.1.1</version>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-release-plugin</artifactId>
+                                <version>2.5.1</version>
+                                <configuration>
+                                <tagNameFormat>v@{project.version}</tagNameFormat>
+                                <autoVersionSubmodules>true</autoVersionSubmodules>
+                                </configuration>
+                        </plugin>
+                </plugins>
+        </build>
+
+</project>
+</tr></td></table>
+
 
