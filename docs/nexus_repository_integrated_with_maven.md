@@ -98,4 +98,80 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
 </project>
 ```
 
+7.	Now we must create a directory **.m2** under **/root**
 
+    * mkdir    ~/.m2
+
+8.	Now create **settings.xml** file and copy the below code
+
+    * File: ~/.m2/settings.xml
+
+```xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+<servers>
+   <server>
+      <id>maven-demo-snapshots</id>
+      <username>PROVIDE-NEXUS-USERNAME</username>
+      <password>PROVIDE-NEXUS-PASSWORD</password>
+    </server>
+
+    <server>
+      <id>maven-demo</id>
+      <username>PROVIDE-NEXUS-USERNAME</username>
+      <password>PROVIDE-NEXUS-PASSWORD</password>
+    </server>
+
+  </servers>
+
+<profiles>
+ <profile>
+   <id>release</id>
+   <repositories>
+      <repository>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+        <id>maven-demo</id>
+        <name>maven-demo</name>
+        <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-demo/</url>
+      </repository>
+    </repositories>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
+  </profile>
+
+ <profile>
+   <id>snapshot</id>
+   <repositories>
+      <repository>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+        <id>maven-demo-snapshots</id>
+        <name>maven-demo-snapshots</name>
+        <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-demo-snapshots/</url>
+      </repository>
+    </repositories>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
+  </profile>
+</profiles>
+
+
+  <mirrors>
+    <mirror>
+      <id>maven-public</id>
+      <name>maven-public</name>
+      <url>http://PROVIDE-NEXUS-SERVER-IP:8081/repository/maven-public/</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+
+</settings>
+
+```
