@@ -14,3 +14,4 @@ docker volume create local-nexus-data
 docker run -d -p 8081:8081 --name nexus -v local-nexus-data:/nexus-data sonatype/nexus3
 
 ```
+3. To access nexus UI, Navigate to **IP-address-of-Host_VM:8081**
