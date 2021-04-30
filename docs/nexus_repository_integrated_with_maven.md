@@ -23,4 +23,4 @@ Login with username as **admin** and to get password navigate to docker volume *
 
 5.	Create repository **maven-demo** and **maven-demo-snapshots**
 
-<img src="../images/create_repo.PNG">
+<img src="../images/create_repo.png">
