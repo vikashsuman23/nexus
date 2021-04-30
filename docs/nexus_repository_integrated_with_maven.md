@@ -20,3 +20,7 @@ docker run -d -p 8081:8081 --name nexus -v local-nexus-data:/nexus-data sonatype
 
 **IP-address-of-Host-VM:8081**
 Login with username as **admin** and to get password navigate to docker volume **/var/lib/docker/volumes/local-nexus-data/_data/admin.password**
+
+5.	Create repository **maven-demo** and **maven-demo-snapshots**
+
+<img src="../images/create_repo.PNG">
