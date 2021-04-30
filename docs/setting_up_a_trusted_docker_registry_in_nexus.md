@@ -128,3 +128,7 @@ Navigate to the repository administration page and create a new repository by se
 
 <img src="../images/create_docker_repo1.png">
 
+Now Click on Create Repository
+
+
+
