@@ -16,9 +16,11 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ngi
 ```
 <img src="../images/nginx-ssl-certs.PNG">
 
-3. Pull the Nexus Docker Container 
+3. Create a Docker Network and Pull the Nexus Docker Container 
 
 ```
+docker network create nexus-network
+
 docker pull sonatype/nexus3
 
 ```
@@ -37,7 +39,7 @@ docker run -d -p 8081:8081 -p 4000:4000 --name nexus -v local-nexus-data:/nexus-
 
 File: nginx.conf
 
-```java
+```
 user  nginx;
   worker_processes  1;
 
@@ -49,6 +51,15 @@ user  nginx;
     }
 
     http {
+
+    upstream nexus {
+        server nexus:8081;
+        }
+
+        upstream registry {
+        server nexus:4000;
+        }
+
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -66,7 +77,7 @@ user  nginx;
         listen         80;
         server_name    private-registry.c4clouds.com;
 
-	return         301 https://$server_name$request_uri;
+        return         301 https://$server_name$request_uri;
     }
 
     server {
@@ -79,17 +90,23 @@ user  nginx;
         # optimize downloading files larger than 1G - refer to nginx doc before adjusting
         #proxy_max_temp_file_size 2048m
 
-        ssl on;
-        ssl_certificate      /etc/nginx/nginx-signed.crt;
-        ssl_certificate_key  /etc/nginx/nginx-signed.key;
+        #ssl on;
+        ssl_certificate      /etc/nginx/ssl.crt;
+        ssl_certificate_key  /etc/nginx/ssl.key;
 
         location / {
-            proxy_pass http://nexus:8081/;
+            proxy_pass http://nexus;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	    proxy_set_header X-Forwarded-Proto "https";
+            proxy_set_header X-Forwarded-Proto "https";
         }
     }
 }
+
+```
+6. Build and run the Nginx container
+
+```
+docker run --name nginx-proxy -v /root/nginx.conf:/etc/nginx/nginx.conf:ro -v /etc/ssl/private/nginx-signed.key:/etc/nginx/ssl.key:ro -v /etc/ssl/certs/nginx-signed.crt:/etc/nginx/ssl.crt:ro -p 443:443 -p 80:80  -d nginx
 ```
