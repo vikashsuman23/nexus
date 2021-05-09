@@ -117,6 +117,12 @@ Note: Delete the existing pom.xml file and create a new pom.xml file with below 
       <username>PROVIDE-NEXUS-USERNAME</username>
       <password>PROVIDE-NEXUS-PASSWORD</password>
     </server>
+   
+   <server>
+      <id>maven-public</id>
+      <username>PROVIDE-NEXUS-USERNAME</username>
+      <password>PROVIDE-NEXUS-PASSWORD</password>
+    </server>
 
     <server>
       <id>maven-demo</id>
